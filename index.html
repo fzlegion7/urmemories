@@ -1,28 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Profile Dropdown</title>
-    <!-- Import Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesindex.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>urmemories.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+   body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1117;
+      color: #e1e8ed;
+      padding-top: 80px;
+    }
+
+    .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  box-shadow: 0 1px 2px rgba(255,255,255,0.1);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left,
+.nav-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.btn-login, .btn-register {
+  margin-left: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.2s ease;
+}
+
+.btn-login {
+  color: #1DA1F2;
+  border: 1px solid #1DA1F2;
+}
+
+.btn-register {
+  background-color: #1DA1F2;
+  color: white;
+}
+
+.btn-login:hover, .btn-register:hover {
+  opacity: 0.9;
+}
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #8899a6;
+      margin-top: 10px;
+    }
+
+    .diary-feed {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .diary-card {
+      background: #15181c;
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(29, 161, 242, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .diary-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .diary-card h3 {
+      color: #fff;
+    }
+
+    .diary-card p {
+      font-style: italic;
+      color: #8899a6;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1DA1F2;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      text-decoration: none;
+    }
+
+    .diary-card:hover .overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cta-box {
+      text-align: center;
+      margin: 60px 20px;
+    }
+
+    .cta-box h2 {
+      color: #fff;
+    }
+
+    .cta-box p {
+      color: #8899a6;
+    }
+
+    .cta-buttons {
+      margin-top: 20px;
+    }
+
+    .cta-btn {
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 10px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .login-btn {
+      background-color: #1DA1F2;
+      color: white;
+    }
+
+    .register-btn {
+      background-color: #ffffff;
+      color: #000;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .login-btn:hover {
+      background-color: #1991da;
+    }
+
+    .register-btn:hover {
+      background-color: #e1e8ed;
+    }
+
+    .benefit-section {
+      background-color: #0f1419;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .benefit-container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .benefit-container h2 {
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .benefit-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .benefit-card {
+      background-color: #15181c;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(29, 161, 242, 0.1);
+      width: 280px;
+      transition: transform 0.3s ease;
+      color: #e1e8ed;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .benefit-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: #8899a6;
+    }
+
+    .top-writer-section {
+  background-color: #0d1117; /* dari sebelumnya #0f1419 */
+  color: #e1e8ed;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+
+.top-writer-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+.top-writer-container h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.writer-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.writer-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1DA1F2;
+}
+
+.writer-info h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.writer-info p {
+  margin: 5px 0;
+  color: #8899a6;
+  font-size: 14px;
+}
+
+.writer-post {
+  background-color: #15181c;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(29, 161, 242, 0.1);
+}
+
+.writer-post h4 {
+  color: #1DA1F2;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.post-content p {
+  font-style: italic;
+  color: #e1e8ed;
+}
+
+.post-meta p {
+  margin-top: 15px;
+  color: #8899a6;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #15181c;
+      color: #8899a6;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .diary-feed {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar a {
+        margin: 5px 0;
+      }
+    }
+
+ .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Popup Form */
+/* Update untuk simetris antara form dan tombol */
+/* Update container untuk simetris */
+.popup-container {
+  background-color: #151a23;
+  color: #e1e8ed;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(29, 161, 242, 0.3);
+  position: relative;
+  margin: 0 auto; /* Menjaga agar container berada di tengah */
+}
+
+/* Update untuk form input */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #e1e8ed;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #2f3336;
+  background-color: #0d1117;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box; /* Menjaga agar lebar input pas dalam container */
+}
+
+.form-group input::placeholder {
+  color: #8899a6;
+}
+
+
+
+/* Update untuk tombol login dan register */
+.btn {
+  width: 100%;  /* Tombol mengambil lebar penuh seperti input */
+  background-color: #1DA1F2;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Menjaga agar tombol tidak melampaui container */
+}
+
+.btn:hover {
+  background-color: #1991da;
+}
+
+/* Switch teks bagian bawah */
+.switch-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #8899a6;
+}
+
+.switch-text a {
+  color: #1DA1F2;
+  text-decoration: none;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* General form group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #151a23; /* Sesuaikan latar belakang input dengan container */
+  color: #fff; /* Agar teks terlihat jelas dengan latar belakang gelap */
+}
+
+/* Username prefix container */
+.username-prefix {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #151a23; /* Sesuaikan latar belakang username prefix dengan container */
+}
+
+.username-prefix span {
+  padding: 0 10px;
+  background-color: #151a23; /* Sama dengan latar belakang form */
+  color: #fff; /* Warna teks di prefix */
+  border-right: 1px solid #ccc;
+}
+
+.username-prefix input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent; /* Agar input menyesuaikan dengan background parent */
+  color: #fff;
+}
+
+/* Button styling */
+button[type="submit"] {
+  background-color: #1DA1F2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+  background-color: #1A91DA;
+}
+
+/* Pop-up close button styling */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #8899a6;
+  cursor: pointer;
+}
+
+  </style>
 </head>
 <body>
+
     <nav class="navbar">
-        <div class="navbar-brand">tycadiaries.</div>
-        <ul class="navbar-links">
-            <li class="dropdown">
-                <a href="#" class="profile">
-                    <img src="https://via.placeholder.com/40" alt="Profile Picture">
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">View Profile</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+        <div class="navbar-inner">
+          <div class="nav-left"></div>
+          
+          <div class="nav-center">
+            <a href="#" class="logo"><img src="images/iconz.png" alt="urmemories" /></a>
+          </div>
+          
+          <div class="nav-right">
+            <a href="login.php" class="btn-login">Login</a>
+            <a href="register.php" class="btn-register">Register</a>
+          </div>
+        </div>
+      </nav>
+      
+  
+      
+      
+
+  <section class="hero">
+    <h1>urmemories.</h1>
+    <p>Where stories bloom and memories stay 💭</p>
+  </section>
+
+  <section class="diary-feed">
+    <div class="diary-card">
+      <h3>Andi's Diary</h3>
+      <p>"Hari ini aku belajar menerima, dan itu tidak mudah..."</p>
+      <a href="#" class="overlay" onclick="showPopup('loginPopup')">Login untuk membaca lebih lanjut</a>
+    </div>
+    <div class="diary-card">
+      <h3>Rina's Moments</h3>
+      <p>"Kadang hujan sore itu yang justru menenangkan..."</p>
+      <a href="#" class="overlay" onclick="showPopup('loginPopup')">Login untuk membaca lebih lanjut</a>
+    </div>
+    <div class="diary-card">
+      <h3>Budi's Note</h3>
+      <p>"Ketika semua terasa berat, menulis jadi jalan keluar."</p>
+      <a href="#" class="overlay" onclick="showPopup('loginPopup')">Login untuk membaca lebih lanjut</a>
+    </div>
+    <div class="diary-card">
+      <h3>Indah's Thought</h3>
+      <p>"Kopi, buku, dan kamu. Tapi cuma dua yang nyata."</p>
+      <a href="#" class="overlay" onclick="showPopup('loginPopup')">Login untuk membaca lebih lanjut</a>
+    </div>
+</section>
+
+  <div class="cta-box">
+    <h2>Tertarik baca lebih banyak?</h2>
+    <p>Gabung sekarang dan mulai tulis diary-mu sendiri 🖋️</p>
+    <div class="cta-buttons">
+        <a href="#" class="cta-btn login-btn" onclick="showPopup('loginPopup')">Login</a>
+        <a href="#" class="cta-btn register-btn" onclick="showPopup('registerPopup')">Register</a>
+    </div>
+  </div>
+
+  <section class="benefit-section">
+    <div class="benefit-container">
+      <h2>Kenapa Gabung urmemories. ?</h2>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <h3>Komunitas Hangat</h3>
+          <p>Gabung dengan orang-orang yang suka nulis dan baca kisah personal tanpa judgement.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Diary Pribadi & Publik</h3>
+          <p>Pilih mana yang mau disimpan sendiri atau dibagikan ke dunia.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Ekspresif & Aman</h3>
+          <p>Tuangkan perasaanmu lewat tulisan, foto, bahkan suara.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="top-writer-section">
+    <div class="top-writer-container">
+      <h2>Top Penulis Minggu Ini ✨</h2>
+  
+      <div class="writer-profile">
+        <img src="images/profil-ditya.jpg" alt="Foto Rani" class="writer-photo">
+        <div class="writer-info">
+          <h3>Ditya</h3>
+          <p>@ddityr</p>
+          <p><strong>58</strong> pengikut · <strong>72</strong> postingan</p>
+        </div>
+      </div>
+  
+      <div class="writer-post">
+        <h4>Postingan Terbaik</h4>
+        <div class="post-content">
+          <p>"Hari itu aku menangis tanpa suara. Tapi ternyata, tulisan jadi suara yang lebih nyaring dari apapun."</p>
+          <div class="post-meta">
+            <p>
+              Postingan ini mendapatkan <strong>812 like</strong> dan <strong>127 komentar</strong>
+              sejak dipublikasikan pada <strong>3 April 2025</strong>.
+              Kisah yang ditulis Rani ini banyak menyentuh pembaca karena kejujurannya
+              yang emosional, namun tetap hangat. Sebuah potret kecil tentang berani
+              mengungkapkan luka dan menemukan kekuatan dari menulis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 urmemories. All rights reserved.</p>
+  </footer>
+
+  <!-- Popup Login -->
+<div class="popup-overlay" id="loginPopup">
+    <div class="popup-container">
+      <button class="close-btn" onclick="closePopup('loginPopup')">&times;</button>
+      <h2>Masuk ke urmemories.</h2>
+      <form>
+        <div class="form-group">
+          <label for="loginEmail">Email atau Username</label>
+          <input type="text" id="loginEmail" name="loginEmail" placeholder="yourname@example.com">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Kata Sandi</label>
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn">Masuk</button>
+        <div class="switch-text">
+            Belum punya akun? <a href="#" onclick="switchPopup('loginPopup', 'registerPopup')">Daftar di sini</a>
+          </div>
+          
+      </form>
+    </div>
+  </div>
+  
+  <!-- Popup Register -->
+  <div class="popup-overlay" id="registerPopup">
+    <div class="popup-container">
+      <button class="close-btn" onclick="closePopup('registerPopup')">&times;</button>
+      <h2>Daftar ke urmemories.</h2>
+      <form>
+        <div class="form-group">
+            <label for="regUsername">Username</label>
+            <div class="username-prefix">
+              <span>@</span>
+              <input type="text" id="regUsername" placeholder="username">
+            </div>
+          </div>          
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Kata Sandi</label>
+          <input type="password" id="regPassword" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn">Daftar</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    function showPopup(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+  
+    function closePopup(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  
+    function switchPopup(currentId, targetId) {
+      closePopup(currentId);
+      showPopup(targetId);
+    }
+  
+    // Optional: Tutup popup jika klik di luar kontainer
+    window.addEventListener('click', function(event) {
+      const popups = ['loginPopup', 'registerPopup'];
+      popups.forEach(function(id) {
+        const overlay = document.getElementById(id);
+        const container = overlay.querySelector('.popup-container');
+        if (event.target === overlay) {
+          closePopup(id);
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>
