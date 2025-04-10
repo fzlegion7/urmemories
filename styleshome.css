@@ -1,0 +1,108 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffb2a1;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+    background-color: #ffb2a1;
+    color: #fff;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Slider Section */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+.slide {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Main Content */
+main.content {
+    padding: 20px;
+}
+
+main.content h2 {
+    font-size: 24px;
+    color: #ff8694;
+    margin-top: 30px;
+}
+
+main.content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Call-to-Action Buttons */
+.cta-buttons {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.cta-btn {
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn {
+    background-color: #ff8694;
+    color: #fff;
+}
+
+.register-btn {
+    background-color: #2a2c3b;
+    color: #fff;
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+.login-btn:hover {
+    background-color: #e67681;
+}
+
+.register-btn:hover {
+    background-color: #444b63;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffb2a1;
+    color: #fff;
+}

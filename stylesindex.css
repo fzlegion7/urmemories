@@ -1,0 +1,111 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif; /* Ganti font ke Poppins */
+    background-color: #ffffff; /* Latar kosong */
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffb2a1; /* Warna solid */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: 600; /* Font tebal sesuai Google Fonts */
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif; /* Terapkan font ke brand */
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    position: relative;
+    margin-left: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    font-family: 'Poppins', sans-serif; /* Terapkan font ke link */
+}
+
+.nav-link:hover {
+    color: #ff8694; /* Warna hover pink lembut */
+}
+
+
+/* Profile Styles */
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ffffff; /* Background untuk placeholder */
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #2A2C3B; /* Warna dropdown lebih terang */
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #3E4050; /* Warna hover dropdown */
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
